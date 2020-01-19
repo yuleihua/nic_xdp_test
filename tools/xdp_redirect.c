@@ -22,7 +22,7 @@
 
 static int ifindex_in;
 static int ifindex_out;
-static bool ifindex_out_xdp_dummy_attached = false;
+static bool ifindex_out_xdp_dummy_attached = true;
 static __u32 prog_id;
 static __u32 dummy_prog_id;
 

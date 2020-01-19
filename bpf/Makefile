@@ -17,6 +17,7 @@ kfiles = xdp_proto_kern.o
 kfiles += xdp_redirect_kern.o
 kfiles += xdp_sample_kern.o
 kfiles += xdp_dump_kern.o
+kfiles += xdp_stats_kern.o
 
 HOSTCFLAGS += $(INCLUDEFLAGS) $(PFLAGS)
 

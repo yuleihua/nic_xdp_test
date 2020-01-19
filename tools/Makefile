@@ -21,7 +21,7 @@ LIBS =  -lelf $(LIBBPF) -pthread -lrt
 NODEBUG=	$(L4NODEBUG)
 CFLAGS+=	-g -ggdb3 -DDEBUG -fno-omit-frame-pointer
 
-all: xdp_sock xdp_sample xdp_redirect xdp_proto xdp_dump install
+all: xdp_sock xdp_sample xdp_redirect xdp_proto xdp_dump xdp_stats install
 
 obj: $(OBJS)
 
@@ -45,11 +45,14 @@ xdp_proto: xdp_proto.o
 xdp_dump: xdp_dump.o
 	libtool --mode=link --tag CC $(CC) $(LDFLAGS) $(LIBS) -o xdp_dump $(notdir $^)
 
+xdp_stats: xdp_stats.o
+	libtool --mode=link --tag CC $(CC) $(LDFLAGS) $(LIBS) -o xdp_stats $(notdir $^)
+
 clean:
 	#libtool --mode=clean rm
-	@rm -rf .libs *.o *.lo *.la xdp_sock xdp_sample xdp_redirect xdp_proto
+	@rm -rf .libs *.o *.lo *.la xdp_sock xdp_sample xdp_redirect xdp_proto xdp_stats
 
 install:
-	@cp -f xdp_sock xdp_sample xdp_redirect xdp_proto xdp_dump ../dist
+	@cp -f xdp_sock xdp_sample xdp_redirect xdp_proto xdp_dump xdp_stats ../dist
 
 .PHONY: all obj lib install
